@@ -4,48 +4,27 @@ public class UrlsConexaoHttp {
 
     private int tipoEnvio = 1;
 
-    public static String urlPrincipal = "http://www.usinasantafe.com.br/pmmqa/";
-    public static String urlPrincEnvio = "http://www.usinasantafe.com.br/pmmqa/";
+    public static String urlPrincipal = "http://www.usinasantafe.com.br/plmdev/";
+    public static String urlPrincEnvio = "http://www.usinasantafe.com.br/plmdev/";
 
     //public static String localPSTVariavel = "br.com.usinasantafe.plm.tb.variaveis.";
     public static String localPSTEstatica = "br.com.usinasantafe.plm.tb.estaticas.";
     public static String localUrl = "br.com.usinasantafe.plm.conWEB.UrlsConexaoHttp";
 
-    public static String AtividadeTO = urlPrincipal + "atividade2.php";
-    public static String ParadaTO = urlPrincipal + "parada2.php";
-    public static String TurnoTO = urlPrincipal + "turno2.php";
-    public static String MotoristaTO = urlPrincipal + "motorista2.php";
-    public static String ItemCheckListTO = urlPrincipal + "itemchecklist2.php";
-    public static String EquipSegTO = urlPrincipal + "equipseg2.php";
-    public static String BocalTO = urlPrincipal + "bocal2.php";
-    public static String PressaoBocalTO = urlPrincipal + "pressaobocal2.php";
+    public static String AtividadeTO = urlPrincipal + "atividade.php";
+    public static String ParadaTO = urlPrincipal + "parada.php";
+    public static String TurnoTO = urlPrincipal + "turno.php";
+    public static String ColaboradorTO = urlPrincipal + "colaborador.php";
+    public static String EquipTO = urlPrincipal + "equip.php";
+    public static String REquipAtivTO = urlPrincipal + "requipativ.php";
+    public static String RAtivParadaTO = urlPrincipal + "rativparada.php";
 
     public UrlsConexaoHttp() {
         // TODO Auto-generated constructor stub
     }
 
-    public String getsApontChecklist() {
-        return urlPrincEnvio + "apontchecklist2.php";
-    }
-
     public String getsInsertApontaMM() {
         return urlPrincEnvio + "inserirapontmm2.php";
-    }
-
-    public String getsInsertBolAbertoMM() {
-        return urlPrincEnvio + "inserirbolabertomm2.php";
-    }
-
-    public String getsInsertBolFechadoMM() {
-        return urlPrincEnvio + "inserirbolfechadomm2.php";
-    }
-
-    public String getsInsertApontaFert() {
-        return urlPrincEnvio + "inserirapontfert2.php";
-    }
-
-    public String getsInsertBolAbertoFert() {
-        return urlPrincEnvio + "inserirbolabertofert2.php";
     }
 
     public String getsInsertBolFechadoFert() {

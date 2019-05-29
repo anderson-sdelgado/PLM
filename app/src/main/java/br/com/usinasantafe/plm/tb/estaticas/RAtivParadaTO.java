@@ -44,4 +44,5 @@ public class RAtivParadaTO extends Entidade {
     public void setIdParada(Long idParada) {
         this.idParada = idParada;
     }
+
 }

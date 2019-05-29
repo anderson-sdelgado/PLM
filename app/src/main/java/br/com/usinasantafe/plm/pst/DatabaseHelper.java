@@ -9,21 +9,21 @@ import com.j256.ormlite.support.ConnectionSource;
 import com.j256.ormlite.table.TableUtils;
 
 import br.com.usinasantafe.plm.tb.estaticas.AtividadeTO;
+import br.com.usinasantafe.plm.tb.estaticas.ColaboradorTO;
 import br.com.usinasantafe.plm.tb.estaticas.EquipTO;
-import br.com.usinasantafe.plm.tb.estaticas.MotoristaTO;
 import br.com.usinasantafe.plm.tb.estaticas.OSTO;
 import br.com.usinasantafe.plm.tb.estaticas.ParadaTO;
 import br.com.usinasantafe.plm.tb.estaticas.RAtivParadaTO;
 import br.com.usinasantafe.plm.tb.estaticas.REquipAtivTO;
 import br.com.usinasantafe.plm.tb.estaticas.ROSAtivTO;
 import br.com.usinasantafe.plm.tb.estaticas.TurnoTO;
-import br.com.usinasantafe.plm.tb.variaveis.ApontaMMTO;
+import br.com.usinasantafe.plm.tb.variaveis.ApontaTO;
 import br.com.usinasantafe.plm.tb.variaveis.BackupApontaTO;
 import br.com.usinasantafe.plm.tb.variaveis.ConfiguracaoTO;
 
 public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
 
-	public static final String FORCA_DB_NAME = "pmm_db";
+	public static final String FORCA_DB_NAME = "plm_db";
 	public static final int FORCA_BD_VERSION = 1;
 
 	private static DatabaseHelper instance;
@@ -56,36 +56,18 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
 		try{
 
 			TableUtils.createTable(cs, EquipTO.class);
-			TableUtils.createTable(cs, EquipSegTO.class);
 			TableUtils.createTable(cs, AtividadeTO.class);
 			TableUtils.createTable(cs, REquipAtivTO.class);
 			TableUtils.createTable(cs, TurnoTO.class);
-			TableUtils.createTable(cs, MotoristaTO.class);
+			TableUtils.createTable(cs, ColaboradorTO.class);
 			TableUtils.createTable(cs, OSTO.class);
 			TableUtils.createTable(cs, ROSAtivTO.class);
 			TableUtils.createTable(cs, RAtivParadaTO.class);
 			TableUtils.createTable(cs, ParadaTO.class);
-			TableUtils.createTable(cs, ItemCheckListTO.class);
-			TableUtils.createTable(cs, REquipPneuTO.class);
-			TableUtils.createTable(cs, PneuTO.class);
-			TableUtils.createTable(cs, BocalTO.class);
-			TableUtils.createTable(cs, PressaoBocalTO.class);
 
 			TableUtils.createTable(cs, ConfiguracaoTO.class);
-			TableUtils.createTable(cs, BoletimMMTO.class);
-			TableUtils.createTable(cs, ApontaMMTO.class);
-			TableUtils.createTable(cs, CabecCheckListTO.class);
-			TableUtils.createTable(cs, RespItemCheckListTO.class);
-			TableUtils.createTable(cs, RendimentoTO.class);
-			TableUtils.createTable(cs, RecolhimentoTO.class);
-			TableUtils.createTable(cs, TransbordoTO.class);
-			TableUtils.createTable(cs, ImplementoTO.class);
-			TableUtils.createTable(cs, AlocaCarretelTO.class);
+			TableUtils.createTable(cs, ApontaTO.class);
 			TableUtils.createTable(cs, BackupApontaTO.class);
-			TableUtils.createTable(cs, BoletimPneuTO.class);
-			TableUtils.createTable(cs, ItemMedPneuTO.class);
-			TableUtils.createTable(cs, BoletimFertTO.class);
-			TableUtils.createTable(cs, ApontaFertTO.class);
 			
 		}
 		catch(Exception e){

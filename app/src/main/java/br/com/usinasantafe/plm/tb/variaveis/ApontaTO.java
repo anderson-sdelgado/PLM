@@ -6,7 +6,7 @@ import com.j256.ormlite.table.DatabaseTable;
 import br.com.usinasantafe.plm.pst.Entidade;
 
 @DatabaseTable(tableName="tbapontammvar")
-public class ApontaMMTO extends Entidade  {
+public class ApontaTO extends Entidade  {
 
 	private static final long serialVersionUID = 1L;
 
@@ -35,7 +35,7 @@ public class ApontaMMTO extends Entidade  {
 	@DatabaseField
 	private Long statusAponta;  //1 - Aberto; 2 - Encerrado
 
-	public ApontaMMTO() {
+	public ApontaTO() {
 		// TODO Auto-generated constructor stub
 	}
 

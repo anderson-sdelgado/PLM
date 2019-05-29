@@ -16,7 +16,6 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import br.com.usinasantafe.plm.MenuInicialActivity;
@@ -29,7 +28,6 @@ import br.com.usinasantafe.plm.tb.estaticas.RAtivParadaTO;
 import br.com.usinasantafe.plm.tb.estaticas.REquipAtivTO;
 import br.com.usinasantafe.plm.tb.estaticas.ROSAtivTO;
 import br.com.usinasantafe.plm.tb.variaveis.AtualizaTO;
-import br.com.usinasantafe.plm.tb.variaveis.ConfiguracaoTO;
 
 /**
  * Created by anderson on 16/11/2015.
@@ -179,11 +177,7 @@ public class ManipDadosVerif {
 
         try {
 
-            if (this.tipo.equals("Equip")) {
-
-                recDadosEquip(result);
-
-            } else if (this.tipo.equals("OS")) {
+            if (this.tipo.equals("OS")) {
 
                 recDadosOS(result);
 
@@ -210,7 +204,7 @@ public class ManipDadosVerif {
 
             } else if (this.tipo.equals("Operador")) {
 
-                recDadosGenerico(result, "MotoristaTO");
+                recDadosGenerico(result, "ColaboradorTO");
 
             } else if (this.tipo.equals("Turno")) {
 
@@ -252,111 +246,6 @@ public class ManipDadosVerif {
         this.senha = senha;
     }
 
-    public void recDadosEquip(String result) {
-
-        try {
-
-            int pos1 = result.indexOf("#") + 1;
-            int pos2 = result.indexOf("|") + 1;
-            int pos3 = result.indexOf("_") + 1;
-            String objPrinc = result.substring(0, (pos1 - 1));
-            String objSeg = result.substring(pos1, (pos2 - 1));
-            String objTerc = result.substring(pos2, (pos3 - 1));
-            String objQuar = result.substring(pos3);
-
-            JSONObject jObj = new JSONObject(objPrinc);
-            JSONArray jsonArray = jObj.getJSONArray("dados");
-
-            if (jsonArray.length() > 0) {
-
-                EquipTO equipTO = new EquipTO();
-                equipTO.deleteAll();
-
-                for (int i = 0; i < jsonArray.length(); i++) {
-
-                    JSONObject objeto = jsonArray.getJSONObject(i);
-                    Gson gson = new Gson();
-                    equipTO = gson.fromJson(objeto.toString(), EquipTO.class);
-                    equipTO.insert();
-
-                }
-
-                jObj = new JSONObject(objSeg);
-                jsonArray = jObj.getJSONArray("dados");
-
-                REquipAtivTO rEquipAtivTO = new REquipAtivTO();
-                rEquipAtivTO.deleteAll();
-
-                for (int j = 0; j < jsonArray.length(); j++) {
-
-                    JSONObject objeto = jsonArray.getJSONObject(j);
-                    Gson gson = new Gson();
-                    REquipAtivTO rEquipAtiv = gson.fromJson(objeto.toString(), REquipAtivTO.class);
-                    rEquipAtiv.insert();
-
-                }
-
-                jObj = new JSONObject(objTerc);
-                jsonArray = jObj.getJSONArray("dados");
-
-                RAtivParadaTO rAtivParadaTO = new RAtivParadaTO();
-                rAtivParadaTO.deleteAll();
-
-                for (int j = 0; j < jsonArray.length(); j++) {
-
-                    JSONObject objeto = jsonArray.getJSONObject(j);
-                    Gson gson = new Gson();
-                    RAtivParadaTO rAtivParada = gson.fromJson(objeto.toString(), RAtivParadaTO.class);
-                    rAtivParada.insert();
-
-                }
-
-                jObj = new JSONObject(objQuar);
-                jsonArray = jObj.getJSONArray("dados");
-
-                ConfiguracaoTO configuracaoTO = new ConfiguracaoTO();
-                configuracaoTO.deleteAll();
-                configuracaoTO.setEquipConfig(equipTO.getIdEquip());
-                configuracaoTO.setClasseEquipConfig(equipTO.getCodClasseEquip());
-                configuracaoTO.setHorimetroConfig(equipTO.getHorimetroEquip());
-                configuracaoTO.setUltTurnoCLConfig(0L);
-                configuracaoTO.setDtUltCLConfig("");
-                configuracaoTO.setDtUltApontConfig("");
-                configuracaoTO.setSenhaConfig(this.senha);
-                configuracaoTO.setVerVisGrafConfig(0L);
-                configuracaoTO.insert();
-                configuracaoTO.commit();
-
-                this.progressDialog.dismiss();
-
-                Intent it = new Intent(telaAtual, telaProx);
-                telaAtual.startActivity(it);
-
-            } else {
-
-                this.progressDialog.dismiss();
-
-                AlertDialog.Builder alerta = new AlertDialog.Builder(telaAtual);
-                alerta.setTitle("ATENÇÃO");
-                alerta.setMessage("EQUIPAMENTO INEXISTENTE NA BASE DE DADOS! FAVOR VERIFICA A NUMERAÇÃO.");
-
-                alerta.setPositiveButton("OK", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        // TODO Auto-generated method stub
-                    }
-                });
-                alerta.show();
-
-            }
-
-        } catch (Exception e) {
-            // TODO Auto-generated catch block
-            Log.i("PMM", "Erro Manip atualizar = " + e);
-        }
-
-    }
-
     public void recDadosOS(String result) {
 
         try {
@@ -393,13 +282,6 @@ public class ManipDadosVerif {
 
                     }
 
-                    ConfiguracaoTO configuracaoTO = new ConfiguracaoTO();
-                    List configList = configuracaoTO.all();
-                    configuracaoTO = (ConfiguracaoTO) configList.get(0);
-                    configuracaoTO.setOsConfig(Long.parseLong(this.dado));
-                    configuracaoTO.setStatusConConfig(1L);
-                    configuracaoTO.update();
-
                     if(!verTerm){
 
                         verTerm = true;
@@ -433,13 +315,6 @@ public class ManipDadosVerif {
                 }
 
             } else {
-
-                ConfiguracaoTO configuracaoTO = new ConfiguracaoTO();
-                List configList = configuracaoTO.all();
-                configuracaoTO = (ConfiguracaoTO) configList.get(0);
-                configuracaoTO.setOsConfig(Long.parseLong(this.dado));
-                configuracaoTO.setStatusConConfig(0L);
-                configuracaoTO.update();
 
                 if(!verTerm) {
                     this.progressDialog.dismiss();

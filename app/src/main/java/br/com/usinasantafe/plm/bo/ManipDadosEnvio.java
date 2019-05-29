@@ -13,7 +13,7 @@ import java.util.Map;
 
 import br.com.usinasantafe.plm.conWEB.ConHttpPostCadGenerico;
 import br.com.usinasantafe.plm.conWEB.UrlsConexaoHttp;
-import br.com.usinasantafe.plm.tb.variaveis.ApontaMMTO;
+import br.com.usinasantafe.plm.tb.variaveis.ApontaTO;
 import br.com.usinasantafe.plm.tb.variaveis.BackupApontaTO;
 
 public class ManipDadosEnvio {
@@ -38,18 +38,18 @@ public class ManipDadosEnvio {
 
     //////////////////////// SALVAR DADOS ////////////////////////////////////////////
 
-    public void salvaAponta(ApontaMMTO apontaMMTO) {
+    public void salvaAponta(ApontaTO apontaTO) {
 
         String datahora = Tempo.getInstance().datahora();
-        apontaMMTO.setDthrAponta(datahora);
-        apontaMMTO.insert();
+        apontaTO.setDthrAponta(datahora);
+        apontaTO.insert();
 
         BackupApontaTO backupApontaTO = new BackupApontaTO();
-        backupApontaTO.setDthrAponta(apontaMMTO.getDthrAponta());
-        backupApontaTO.setOsAponta(apontaMMTO.getOsAponta());
-        backupApontaTO.setAtividadeAponta(apontaMMTO.getAtividadeAponta());
-        backupApontaTO.setParadaAponta(apontaMMTO.getParadaAponta());
-        backupApontaTO.setTransbAponta(apontaMMTO.getTransbordoAponta());
+        backupApontaTO.setDthrAponta(apontaTO.getDthrAponta());
+        backupApontaTO.setOsAponta(apontaTO.getOsAponta());
+        backupApontaTO.setAtividadeAponta(apontaTO.getAtividadeAponta());
+        backupApontaTO.setParadaAponta(apontaTO.getParadaAponta());
+        backupApontaTO.setTransbAponta(apontaTO.getTransbordoAponta());
         backupApontaTO.insert();
 
         envioDadosPrinc();
@@ -62,14 +62,14 @@ public class ManipDadosEnvio {
 
         JsonArray jsonArrayAponta = new JsonArray();
 
-        ApontaMMTO apontaMMTO = new ApontaMMTO();
+        ApontaTO apontaTO = new ApontaTO();
         List apontaList = apontamentosMM();
 
         for (int i = 0; i < apontaList.size(); i++) {
 
-            apontaMMTO = (ApontaMMTO) apontaList.get(i);
+            apontaTO = (ApontaTO) apontaList.get(i);
             Gson gson = new Gson();
-            jsonArrayAponta.add(gson.toJsonTree(apontaMMTO, apontaMMTO.getClass()));
+            jsonArrayAponta.add(gson.toJsonTree(apontaTO, apontaTO.getClass()));
 
 
         }
@@ -98,16 +98,16 @@ public class ManipDadosEnvio {
 
     public void delApontaMM() {
 
-        ApontaMMTO apontaMMTO = new ApontaMMTO();
-        List apontaList = apontaMMTO.all();
+        ApontaTO apontaTO = new ApontaTO();
+        List apontaList = apontaTO.all();
 
     }
 
     //////////////////////////TRAZER DADOS////////////////////////////
 
     public List apontamentosMM() {
-        ApontaMMTO apontaMMTO = new ApontaMMTO();
-        return apontaMMTO.get("statusAponta", 2L);
+        ApontaTO apontaTO = new ApontaTO();
+        return apontaTO.get("statusAponta", 2L);
     }
 
 
