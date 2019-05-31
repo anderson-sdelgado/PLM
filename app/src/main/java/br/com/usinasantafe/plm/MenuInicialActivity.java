@@ -2,19 +2,23 @@ package br.com.usinasantafe.plm;
 
 import android.Manifest;
 import android.app.Activity;
+import android.app.AlarmManager;
+import android.app.PendingIntent;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 
-import br.com.usinasantafe.plm.tb.estaticas.ColaboradorTO;
+import br.com.usinasantafe.plm.tb.estaticas.ColabTO;
 import br.com.usinasantafe.plm.tb.variaveis.ConfiguracaoTO;
 
 public class MenuInicialActivity extends ActivityGeneric {
@@ -61,8 +65,8 @@ public class MenuInicialActivity extends ActivityGeneric {
                 String text = textView.getText().toString();
 
                 if (text.equals("BOLETIM")) {
-                    ColaboradorTO colaboradorTO = new ColaboradorTO();
-                    if (colaboradorTO.hasElements() && configTO.hasElements()) {
+                    ColabTO colabTO = new ColabTO();
+                    if (colabTO.hasElements() && configTO.hasElements()) {
                         Intent it = new Intent(MenuInicialActivity.this, EquipActivity.class);
                         startActivity(it);
                         finish();
@@ -82,6 +86,35 @@ public class MenuInicialActivity extends ActivityGeneric {
     public boolean checkPermission(String permission) {
         int check = ContextCompat.checkSelfPermission(this, permission);
         return (check == PackageManager.PERMISSION_GRANTED);
+    }
+
+    public void startTimer(String verAtualizacao) {
+
+//        Log.i("PMM", "VERATUAL = " + verAtualizacao);
+//        pmmContext.setVerAtualCL(verAtualizacao);
+//        boolean alarmeAtivo = (PendingIntent.getBroadcast(this, 0, new Intent("ALARME_DISPARADO"), PendingIntent.FLAG_NO_CREATE) == null);
+//
+//        if (progressBar.isShowing()) {
+//            progressBar.dismiss();
+//        }
+//
+//        if (alarmeAtivo) {
+//
+//            Log.i("PMM", "NOVO TIMER");
+//
+//            Intent intent = new Intent("EXECUTAR_ALARME");
+//            PendingIntent p = PendingIntent.getBroadcast(this, 0, intent, 0);
+//
+//            Calendar c = Calendar.getInstance();
+//            c.setTimeInMillis(System.currentTimeMillis());
+//            c.add(Calendar.SECOND, 1);
+//
+//            AlarmManager alarme = (AlarmManager) getSystemService(ALARM_SERVICE);
+//            alarme.setRepeating(AlarmManager.RTC_WAKEUP, c.getTimeInMillis(), 60000, p);
+//
+//        } else {
+//            Log.i("PMM", "TIMER já ativo");
+//        }
     }
 
 }

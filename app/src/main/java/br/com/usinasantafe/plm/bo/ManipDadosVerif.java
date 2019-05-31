@@ -198,29 +198,20 @@ public class ManipDadosVerif {
                     atualizarAplicativo.setContext(this.menuInicialActivity);
                     atualizarAplicativo.execute();
                 } else {
-
-//                    this.menuInicialActivity.startTimer(verAtualizacao);
+                    this.menuInicialActivity.startTimer(verAtualizacao);
                 }
 
-            } else if (this.tipo.equals("Operador")) {
+            } else if (this.tipo.equals("Colab")) {
 
-                recDadosGenerico(result, "ColaboradorTO");
+                recDadosGenerico(result, "ColabTO");
 
             } else if (this.tipo.equals("Turno")) {
 
                 recDadosGenerico(result, "TurnoTO");
 
-            } else if (this.tipo.equals("EquipSeg")) {
+            } else if (this.tipo.equals("Equip")) {
 
-                recDadosGenerico(result, "EquipSegTO");
-
-            } else if (this.tipo.equals("Bocal")) {
-
-                recDadosGenerico(result, "BocalTO");
-
-            } else if (this.tipo.equals("PressaoBocal")) {
-
-                recDadosGenerico(result, "PressaoBocalTO");
+                recDadosGenerico(result, "EquipTO");
 
             }
 
@@ -240,10 +231,6 @@ public class ManipDadosVerif {
 
     public boolean isVerTerm() {
         return verTerm;
-    }
-
-    public void setSenha(String senha) {
-        this.senha = senha;
     }
 
     public void recDadosOS(String result) {
@@ -305,7 +292,6 @@ public class ManipDadosVerif {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
                                 // TODO Auto-generated method stub
-
                             }
                         });
                         alerta.show();
@@ -327,7 +313,6 @@ public class ManipDadosVerif {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
                             // TODO Auto-generated method stub
-
                         }
                     });
                     alerta.show();
@@ -358,23 +343,8 @@ public class ManipDadosVerif {
                 String objQuarto = result.substring(pos3, (pos4 - 1));
                 String objQuinto = result.substring(pos4);
 
-                JSONObject jObj = new JSONObject(objPrim);
+                JSONObject jObj = new JSONObject(objSeg);
                 JSONArray jsonArray = jObj.getJSONArray("dados");
-
-                EquipTO equipTO = new EquipTO();
-                equipTO.deleteAll();
-
-                for (int i = 0; i < jsonArray.length(); i++) {
-
-                    JSONObject objeto = jsonArray.getJSONObject(i);
-                    Gson gson = new Gson();
-                    equipTO = gson.fromJson(objeto.toString(), EquipTO.class);
-                    equipTO.insert();
-
-                }
-
-                jObj = new JSONObject(objSeg);
-                jsonArray = jObj.getJSONArray("dados");
 
                 REquipAtivTO rEquipAtivTO = new REquipAtivTO();
                 rEquipAtivTO.deleteAll();
@@ -400,34 +370,6 @@ public class ManipDadosVerif {
                     Gson gson = new Gson();
                     RAtivParadaTO rAtivParada = gson.fromJson(objeto.toString(), RAtivParadaTO.class);
                     rAtivParada.insert();
-
-                }
-
-                jObj = new JSONObject(objQuarto);
-                jsonArray = jObj.getJSONArray("dados");
-
-                if (jsonArray.length() > 0) {
-
-                    for (int i = 0; i < jsonArray.length(); i++) {
-
-                        JSONObject objeto = jsonArray.getJSONObject(i);
-                        Gson gson = new Gson();
-                        OSTO osTO = gson.fromJson(objeto.toString(), OSTO.class);
-                        osTO.insert();
-
-                    }
-
-                    jObj = new JSONObject(objQuinto);
-                    jsonArray = jObj.getJSONArray("dados");
-
-                    for (int j = 0; j < jsonArray.length(); j++) {
-
-                        JSONObject objeto = jsonArray.getJSONObject(j);
-                        Gson gson = new Gson();
-                        ROSAtivTO rosAtivTO = gson.fromJson(objeto.toString(), ROSAtivTO.class);
-                        rosAtivTO.insert();
-
-                    }
 
                 }
 

@@ -49,7 +49,6 @@ public class ManipDadosEnvio {
         backupApontaTO.setOsAponta(apontaTO.getOsAponta());
         backupApontaTO.setAtividadeAponta(apontaTO.getAtividadeAponta());
         backupApontaTO.setParadaAponta(apontaTO.getParadaAponta());
-        backupApontaTO.setTransbAponta(apontaTO.getTransbordoAponta());
         backupApontaTO.insert();
 
         envioDadosPrinc();
@@ -107,7 +106,7 @@ public class ManipDadosEnvio {
 
     public List apontamentosMM() {
         ApontaTO apontaTO = new ApontaTO();
-        return apontaTO.get("statusAponta", 2L);
+        return apontaTO.all();
     }
 
 

@@ -13,9 +13,13 @@ public class ApontaTO extends Entidade  {
 	@DatabaseField(generatedId=true)
 	private Long idAponta;
 	@DatabaseField
-	private Long idBolAponta;
+	private Long idEquipAponta;
 	@DatabaseField
-	private Long idExtBolAponta;
+	private Long idTurnoAponta;
+	@DatabaseField
+	private Long matricOperadorAponta;
+	@DatabaseField
+	private Long matricLiderAponta;
 	@DatabaseField
 	private Long osAponta;
 	@DatabaseField
@@ -23,17 +27,9 @@ public class ApontaTO extends Entidade  {
 	@DatabaseField
 	private Long paradaAponta;
 	@DatabaseField
-	private Long transbordoAponta;
-	@DatabaseField
 	private String dthrAponta;
 	@DatabaseField
-	private Double latitudeAponta;
-	@DatabaseField
-	private Double longitudeAponta;
-	@DatabaseField
 	private Long statusConAponta;  //0 - OffLine; 1 - OnLine
-	@DatabaseField
-	private Long statusAponta;  //1 - Aberto; 2 - Encerrado
 
 	public ApontaTO() {
 		// TODO Auto-generated constructor stub
@@ -43,20 +39,40 @@ public class ApontaTO extends Entidade  {
 		return idAponta;
 	}
 
-	public Long getIdBolAponta() {
-		return idBolAponta;
+	public void setIdAponta(Long idAponta) {
+		this.idAponta = idAponta;
 	}
 
-	public void setIdBolAponta(Long idBolAponta) {
-		this.idBolAponta = idBolAponta;
+	public Long getIdEquipAponta() {
+		return idEquipAponta;
 	}
 
-	public Long getIdExtBolAponta() {
-		return idExtBolAponta;
+	public void setIdEquipAponta(Long idEquipAponta) {
+		this.idEquipAponta = idEquipAponta;
 	}
 
-	public void setIdExtBolAponta(Long idExtBolAponta) {
-		this.idExtBolAponta = idExtBolAponta;
+	public Long getIdTurnoAponta() {
+		return idTurnoAponta;
+	}
+
+	public void setIdTurnoAponta(Long idTurnoAponta) {
+		this.idTurnoAponta = idTurnoAponta;
+	}
+
+	public Long getMatricOperadorAponta() {
+		return matricOperadorAponta;
+	}
+
+	public void setMatricOperadorAponta(Long matricOperadorAponta) {
+		this.matricOperadorAponta = matricOperadorAponta;
+	}
+
+	public Long getMatricLiderAponta() {
+		return matricLiderAponta;
+	}
+
+	public void setMatricLiderAponta(Long matricLiderAponta) {
+		this.matricLiderAponta = matricLiderAponta;
 	}
 
 	public Long getOsAponta() {
@@ -91,30 +107,6 @@ public class ApontaTO extends Entidade  {
 		this.dthrAponta = dthrAponta;
 	}
 
-	public Long getTransbordoAponta() {
-		return transbordoAponta;
-	}
-
-	public void setTransbordoAponta(Long transbordoAponta) {
-		this.transbordoAponta = transbordoAponta;
-	}
-
-	public Double getLatitudeAponta() {
-		return latitudeAponta;
-	}
-
-	public void setLatitudeAponta(Double latitudeAponta) {
-		this.latitudeAponta = latitudeAponta;
-	}
-
-	public Double getLongitudeAponta() {
-		return longitudeAponta;
-	}
-
-	public void setLongitudeAponta(Double longitudeAponta) {
-		this.longitudeAponta = longitudeAponta;
-	}
-
 	public Long getStatusConAponta() {
 		return statusConAponta;
 	}
@@ -123,11 +115,4 @@ public class ApontaTO extends Entidade  {
 		this.statusConAponta = statusConAponta;
 	}
 
-	public Long getStatusAponta() {
-		return statusAponta;
-	}
-
-	public void setStatusAponta(Long statusAponta) {
-		this.statusAponta = statusAponta;
-	}
 }

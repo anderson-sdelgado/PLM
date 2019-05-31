@@ -25,13 +25,13 @@
             android:screenOrientation="portrait" />
         <activity android:name=".ParadaActivity"
             android:screenOrientation="portrait" />
-        <activity android:name=".AtividadeActivity"
+        <activity android:name=".ListaAtividadeActivity"
             android:screenOrientation="portrait" />
         <activity android:name=".OSActivity"
             android:screenOrientation="portrait" />
         <activity android:name=".OperadorActivity"
             android:screenOrientation="portrait" />
-        <activity android:name=".TurnoActivity"
+        <activity android:name=".ListaTurnoActivity"
             android:screenOrientation="portrait" />
         <activity android:name=".EquipActivity"
             android:screenOrientation="portrait" />

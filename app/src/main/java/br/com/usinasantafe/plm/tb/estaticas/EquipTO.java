@@ -30,14 +30,6 @@ public class EquipTO extends Entidade {
     private String descrClasseEquip;
     @DatabaseField
     private Long codTurno;
-    @DatabaseField
-    private Long idChecklist;
-    @DatabaseField
-    private Long tipoEquipFert;
-    @DatabaseField
-    private Double horimetroEquip;
-    @DatabaseField
-    private Double medicaoEquipFert;
 
     public EquipTO() {
     }
@@ -82,35 +74,4 @@ public class EquipTO extends Entidade {
         this.codTurno = codTurno;
     }
 
-    public Long getIdChecklist() {
-        return idChecklist;
-    }
-
-    public void setIdChecklist(Long idChecklist) {
-        this.idChecklist = idChecklist;
-    }
-
-    public Long getTipoEquipFert() {
-        return tipoEquipFert;
-    }
-
-    public void setTipoEquipFert(Long tipoEquipFert) {
-        this.tipoEquipFert = tipoEquipFert;
-    }
-
-    public Double getHorimetroEquip() {
-        return horimetroEquip;
-    }
-
-    public void setHorimetroEquip(Double horimetroEquip) {
-        this.horimetroEquip = horimetroEquip;
-    }
-
-    public Double getMedicaoEquipFert() {
-        return medicaoEquipFert;
-    }
-
-    public void setMedicaoEquipFert(Double medicaoEquipFert) {
-        this.medicaoEquipFert = medicaoEquipFert;
-    }
 }

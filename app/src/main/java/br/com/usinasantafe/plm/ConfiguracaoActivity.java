@@ -13,7 +13,7 @@ import java.util.List;
 
 import br.com.usinasantafe.plm.bo.ConexaoWeb;
 import br.com.usinasantafe.plm.bo.ManipDadosReceb;
-import br.com.usinasantafe.plm.tb.estaticas.ColaboradorTO;
+import br.com.usinasantafe.plm.tb.estaticas.ColabTO;
 import br.com.usinasantafe.plm.tb.variaveis.ConfiguracaoTO;
 
 public class ConfiguracaoActivity extends ActivityGeneric {
@@ -55,8 +55,8 @@ public class ConfiguracaoActivity extends ActivityGeneric {
                 if(!editTextLiderConfig.getText().toString().equals("") &&
                         !editTextSenhaConfig.getText().toString().equals("")){
 
-                    ColaboradorTO colaboradorTO = new ColaboradorTO();
-                    List colabList = colaboradorTO.get("codColab", Long.parseLong(editTextLiderConfig.getText().toString()));
+                    ColabTO colabTO = new ColabTO();
+                    List colabList = colabTO.get("codColab", Long.parseLong(editTextLiderConfig.getText().toString()));
 
                     if(colabList.size() > 0){
 

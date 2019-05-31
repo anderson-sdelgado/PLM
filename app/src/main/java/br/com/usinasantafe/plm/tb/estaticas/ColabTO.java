@@ -16,7 +16,7 @@ import com.j256.ormlite.table.DatabaseTable;
 import br.com.usinasantafe.plm.pst.Entidade;
 
 @DatabaseTable(tableName="tbcolabest")
-public class ColaboradorTO extends Entidade {
+public class ColabTO extends Entidade {
 
 	private static final long serialVersionUID = 1L;
 	
@@ -25,7 +25,7 @@ public class ColaboradorTO extends Entidade {
 	@DatabaseField
     private String nomeColab;
 
-    public ColaboradorTO() {
+    public ColabTO() {
     }
 
 	public Long getCodColab() {
