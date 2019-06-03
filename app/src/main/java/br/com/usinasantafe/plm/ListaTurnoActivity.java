@@ -93,7 +93,7 @@ public class ListaTurnoActivity extends Activity {
 
 
         EquipTO equipTO = new EquipTO();
-        List listEquipTO = equipTO.get("idEquip", plmContext.getApontaTO().getIdEquipAponta());
+        List listEquipTO = equipTO.get("idEquip", plmContext.getApontTO().getIdEquipApont());
         equipTO = (EquipTO) listEquipTO.get(0);
         listEquipTO.clear();
 
@@ -119,7 +119,7 @@ public class ListaTurnoActivity extends Activity {
                 // TODO Auto-generated method stub
 
                 TurnoTO turnoTO = (TurnoTO) turnoList.get(position);
-                plmContext.getApontaTO().setIdTurnoAponta(turnoTO.getIdTurno());
+                plmContext.getApontTO().setIdTurnoApont(turnoTO.getIdTurno());
                 turnoList.clear();
 
                 Intent it = new Intent(ListaTurnoActivity.this, OperadorActivity.class);

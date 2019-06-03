@@ -1,6 +1,5 @@
 package br.com.usinasantafe.plm;
 
-import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
@@ -9,8 +8,6 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
 import android.widget.Button;
-
-import java.util.List;
 
 import br.com.usinasantafe.plm.bo.ConexaoWeb;
 import br.com.usinasantafe.plm.bo.ManipDadosVerif;
@@ -41,7 +38,7 @@ public class OSActivity extends ActivityGeneric {
 
                     try{
 
-                        plmContext.getApontaTO().setOsAponta(Long.parseLong(editTextPadrao.getText().toString()));
+                        plmContext.getApontTO().setOsApont(Long.parseLong(editTextPadrao.getText().toString()));
 
                         OSTO osTO = new OSTO();
                         osTO.deleteAll();
@@ -59,10 +56,14 @@ public class OSActivity extends ActivityGeneric {
 
                             customHandler.postDelayed(updateTimerThread, 10000);
 
+                            plmContext.getApontTO().setStatusConApont(1L);
+
                             ManipDadosVerif.getInstance().verDados(editTextPadrao.getText().toString(), "OS"
                                     , OSActivity.this, ListaAtividadeActivity.class, progressBar);
 
                         } else {
+
+                            plmContext.getApontTO().setStatusConApont(0L);
 
                             Intent it = new Intent(OSActivity.this, ListaAtividadeActivity.class);
                             startActivity(it);
@@ -119,6 +120,8 @@ public class OSActivity extends ActivityGeneric {
                 if (progressBar.isShowing()) {
                     progressBar.dismiss();
                 }
+
+                plmContext.getApontTO().setStatusConApont(0L);
 
                 Intent it = new Intent(OSActivity.this, ListaAtividadeActivity.class);
                 startActivity(it);

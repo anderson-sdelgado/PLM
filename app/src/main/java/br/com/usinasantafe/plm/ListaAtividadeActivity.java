@@ -7,6 +7,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
 
@@ -24,6 +25,7 @@ public class ListaAtividadeActivity extends Activity {
 
     private ProgressDialog progressBar;
     private PLMContext plmContext;
+    private ArrayList ativArrayList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -76,7 +78,7 @@ public class ListaAtividadeActivity extends Activity {
         ArrayList<String> itens = new ArrayList<String>();
 
         REquipAtivTO rEquipAtivTO = new REquipAtivTO();
-        List lrea = rEquipAtivTO.get("idEquip", plmContext.getApontaTO().getIdEquipAponta());
+        List lrea = rEquipAtivTO.get("idEquip", plmContext.getApontTO().getIdEquipApont());
 
         ArrayList<Long> rLista = new ArrayList<Long>();
 
@@ -87,10 +89,10 @@ public class ListaAtividadeActivity extends Activity {
 
         List ativList = atividadeTO.in("idAtiv", rLista);
 
-        ArrayList ativArrayList = new ArrayList();
+        ativArrayList = new ArrayList();
 
         ROSAtivTO rOSAtivTO = new ROSAtivTO();
-        List rOSAtivList = rOSAtivTO.get("nroOS", plmContext.getApontaTO().getOsAponta());
+        List rOSAtivList = rOSAtivTO.get("nroOS", plmContext.getApontTO().getOsApont());
 
         if (rOSAtivList.size() > 0) {
             for (int i = 0; i < ativList.size(); i++) {
@@ -115,8 +117,27 @@ public class ListaAtividadeActivity extends Activity {
         }
 
         AdapterList adapterList = new AdapterList(this, itens);
-        ListView atividadeListView = (ListView) findViewById(R.id.listAtividade);
+        final ListView atividadeListView = (ListView) findViewById(R.id.listAtividade);
         atividadeListView.setAdapter(adapterList);
+
+        atividadeListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+
+            @Override
+            public void onItemClick(AdapterView<?> l, View v, int position,
+                                    long id) {
+                // TODO Auto-generated method stub
+
+                AtividadeTO atividadeTO = new AtividadeTO();
+                atividadeTO = (AtividadeTO) ativArrayList.get(position);
+                plmContext.getApontTO().setAtivApont(atividadeTO.getIdAtiv());
+                ativArrayList.clear();
+
+                Intent it = new Intent(ListaAtividadeActivity.this, ListaParadaActivity.class);
+                startActivity(it);
+
+            }
+
+        });
 
         buttonRetAtividade.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -127,4 +148,8 @@ public class ListaAtividadeActivity extends Activity {
         });
 
     }
+
+    public void onBackPressed()  {
+    }
+
 }

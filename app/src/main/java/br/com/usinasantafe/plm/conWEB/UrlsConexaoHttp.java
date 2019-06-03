@@ -23,12 +23,8 @@ public class UrlsConexaoHttp {
         // TODO Auto-generated constructor stub
     }
 
-    public String getsInsertApontaMM() {
-        return urlPrincEnvio + "inserirapontmm2.php";
-    }
-
-    public String getsInsertBolFechadoFert() {
-        return urlPrincEnvio + "inserirbolfechadofert2.php";
+    public String getsInsertApontMM() {
+        return urlPrincEnvio + "inserirapont.php";
     }
 
     public String urlVerifica(String classe) {

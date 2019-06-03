@@ -2,11 +2,12 @@ package br.com.usinasantafe.plm;
 
 import android.app.Application;
 
-import br.com.usinasantafe.plm.tb.variaveis.ApontaTO;
+import br.com.usinasantafe.plm.tb.variaveis.ApontTO;
 
 public class PLMContext extends Application {
 
-    private ApontaTO apontaTO;
+    private ApontTO apontTO;
+    public static String versaoAplic = "1.0";
 
     @Override
     public void onCreate() {
@@ -14,10 +15,10 @@ public class PLMContext extends Application {
         super.onCreate();
     }
 
-    public ApontaTO getApontaTO() {
-        if (apontaTO == null)
-            apontaTO = new ApontaTO();
-        return apontaTO;
+    public ApontTO getApontTO() {
+        if (apontTO == null)
+            apontTO = new ApontTO();
+        return apontTO;
     }
 
 }

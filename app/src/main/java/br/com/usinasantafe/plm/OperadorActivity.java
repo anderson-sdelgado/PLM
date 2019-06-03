@@ -13,7 +13,6 @@ import java.util.List;
 import br.com.usinasantafe.plm.bo.ConexaoWeb;
 import br.com.usinasantafe.plm.bo.ManipDadosVerif;
 import br.com.usinasantafe.plm.tb.estaticas.ColabTO;
-import br.com.usinasantafe.plm.tb.estaticas.EquipTO;
 
 public class OperadorActivity extends ActivityGeneric {
 
@@ -99,7 +98,7 @@ public class OperadorActivity extends ActivityGeneric {
                     if (colabList.size() > 0) {
 
                         colabTO = (ColabTO) colabList.get(0);
-                        plmContext.getApontaTO().setMatricOperadorAponta(colabTO.getCodColab());
+                        plmContext.getApontTO().setMatricOperApont(colabTO.getCodColab());
                         colabList.clear();
 
                         Intent it = new Intent(OperadorActivity.this, OSActivity.class);
@@ -124,7 +123,7 @@ public class OperadorActivity extends ActivityGeneric {
                 }
                 else{
 
-                    plmContext.getApontaTO().setMatricOperadorAponta(0L);
+                    plmContext.getApontTO().setMatricOperApont(0L);
 
                     Intent it = new Intent(OperadorActivity.this, OSActivity.class);
                     startActivity(it);

@@ -13,8 +13,8 @@ import java.util.Map;
 
 import br.com.usinasantafe.plm.conWEB.ConHttpPostCadGenerico;
 import br.com.usinasantafe.plm.conWEB.UrlsConexaoHttp;
-import br.com.usinasantafe.plm.tb.variaveis.ApontaTO;
-import br.com.usinasantafe.plm.tb.variaveis.BackupApontaTO;
+import br.com.usinasantafe.plm.tb.variaveis.ApontTO;
+import br.com.usinasantafe.plm.tb.variaveis.ConfiguracaoTO;
 
 public class ManipDadosEnvio {
 
@@ -38,18 +38,17 @@ public class ManipDadosEnvio {
 
     //////////////////////// SALVAR DADOS ////////////////////////////////////////////
 
-    public void salvaAponta(ApontaTO apontaTO) {
+    public void salvaApont(ApontTO apontTO) {
+
+        ConfiguracaoTO configuracaoTO = new ConfiguracaoTO();
+        List configList = configuracaoTO.all();
+        configuracaoTO = (ConfiguracaoTO) configList.get(0);
+        configList.clear();
 
         String datahora = Tempo.getInstance().datahora();
-        apontaTO.setDthrAponta(datahora);
-        apontaTO.insert();
-
-        BackupApontaTO backupApontaTO = new BackupApontaTO();
-        backupApontaTO.setDthrAponta(apontaTO.getDthrAponta());
-        backupApontaTO.setOsAponta(apontaTO.getOsAponta());
-        backupApontaTO.setAtividadeAponta(apontaTO.getAtividadeAponta());
-        backupApontaTO.setParadaAponta(apontaTO.getParadaAponta());
-        backupApontaTO.insert();
+        apontTO.setMatricLiderApont(configuracaoTO.getMatricLiderConfig());
+        apontTO.setDthrApont(datahora);
+        apontTO.insert();
 
         envioDadosPrinc();
 
@@ -57,18 +56,18 @@ public class ManipDadosEnvio {
 
     //////////////////////// ENVIAR DADOS ////////////////////////////////////////////
 
-    public void envioAponta() {
+    public void envioApont() {
 
-        JsonArray jsonArrayAponta = new JsonArray();
+        JsonArray jsonArrayApont = new JsonArray();
 
-        ApontaTO apontaTO = new ApontaTO();
+        ApontTO apontTO = new ApontTO();
         List apontaList = apontamentosMM();
 
         for (int i = 0; i < apontaList.size(); i++) {
 
-            apontaTO = (ApontaTO) apontaList.get(i);
+            apontTO = (ApontTO) apontaList.get(i);
             Gson gson = new Gson();
-            jsonArrayAponta.add(gson.toJsonTree(apontaTO, apontaTO.getClass()));
+            jsonArrayApont.add(gson.toJsonTree(apontTO, apontTO.getClass()));
 
 
         }
@@ -76,14 +75,13 @@ public class ManipDadosEnvio {
         apontaList.clear();
 
         JsonObject jsonAponta = new JsonObject();
-        jsonAponta.add("aponta", jsonArrayAponta);
-
+        jsonAponta.add("apont", jsonArrayApont);
 
         String dados = jsonAponta.toString();
 
         Log.i("PMM", "APONTAMENTO = " + dados);
 
-        String[] url = {urlsConexaoHttp.getsInsertApontaMM()};
+        String[] url = {urlsConexaoHttp.getsInsertApontMM()};
         Map<String, Object> parametrosPost = new HashMap<String, Object>();
         parametrosPost.put("dado", dados);
 
@@ -95,26 +93,28 @@ public class ManipDadosEnvio {
 
     /////////////////////////////// DELETAR DADOS ///////////////////////////////////////////////
 
-    public void delApontaMM() {
+    public void delApont() {
 
-        ApontaTO apontaTO = new ApontaTO();
-        List apontaList = apontaTO.all();
+        ApontTO apontTO = new ApontTO();
+        List apontaList = apontamentosMM();
+
+        for (int i = 0; i < apontaList.size(); i++) {
+            apontTO = (ApontTO) apontaList.get(i);
+            apontTO.delete();
+        }
 
     }
 
     //////////////////////////TRAZER DADOS////////////////////////////
 
     public List apontamentosMM() {
-        ApontaTO apontaTO = new ApontaTO();
-        return apontaTO.all();
+        ApontTO apontTO = new ApontTO();
+        return apontTO.all();
     }
-
 
     //////////////////////VERIFICAÇÃO DE DADOS///////////////////////////
 
     public Boolean verifAponta() { return apontamentosMM().size() > 0; }
-
-
 
     /////////////////////////MECANISMO DE ENVIO//////////////////////////////////
 
@@ -132,7 +132,7 @@ public class ManipDadosEnvio {
 
     public void envioDadosPrinc() {
         if (verifAponta()) {
-            envioAponta();
+            envioApont();
         }
     }
 

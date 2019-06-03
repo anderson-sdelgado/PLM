@@ -23,7 +23,7 @@
         android:theme="@style/AppTheme">
         <activity android:name=".SenhaActivity"
             android:screenOrientation="portrait" />
-        <activity android:name=".ParadaActivity"
+        <activity android:name=".ListaParadaActivity"
             android:screenOrientation="portrait" />
         <activity android:name=".ListaAtividadeActivity"
             android:screenOrientation="portrait" />
