@@ -47,7 +47,7 @@ public class OperadorActivity extends ActivityGeneric {
 
                             progressBar = new ProgressDialog(OperadorActivity.this);
                             progressBar.setCancelable(true);
-                            progressBar.setMessage("Atualizando Equip...");
+                            progressBar.setMessage("Atualizando Colaborador...");
                             progressBar.show();
 
                             ManipDadosVerif.getInstance().verDados("", "Colab"

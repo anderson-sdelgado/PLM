@@ -23,7 +23,7 @@ public class UrlsConexaoHttp {
         // TODO Auto-generated constructor stub
     }
 
-    public String getsInsertApontMM() {
+    public String getsInsertApont() {
         return urlPrincEnvio + "inserirapont.php";
     }
 

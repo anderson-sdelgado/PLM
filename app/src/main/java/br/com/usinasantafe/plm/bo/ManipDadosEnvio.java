@@ -81,7 +81,7 @@ public class ManipDadosEnvio {
 
         Log.i("PMM", "APONTAMENTO = " + dados);
 
-        String[] url = {urlsConexaoHttp.getsInsertApontMM()};
+        String[] url = {urlsConexaoHttp.getsInsertApont()};
         Map<String, Object> parametrosPost = new HashMap<String, Object>();
         parametrosPost.put("dado", dados);
 
