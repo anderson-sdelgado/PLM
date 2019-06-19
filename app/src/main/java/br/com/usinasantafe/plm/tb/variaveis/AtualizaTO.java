@@ -6,28 +6,19 @@ package br.com.usinasantafe.plm.tb.variaveis;
 
 public class AtualizaTO {
 
-    private Long idLiderAtual;
-    private Long idCheckList;
+    private Long nroCelular;
     private String versaoAtual;
     private String versaoNova;
 
     public AtualizaTO() {
     }
 
-    public Long getIdLiderAtual() {
-        return idLiderAtual;
+    public Long getNroCelular() {
+        return nroCelular;
     }
 
-    public void setIdLiderAtual(Long idLiderAtual) {
-        this.idLiderAtual = idLiderAtual;
-    }
-
-    public Long getIdCheckList() {
-        return idCheckList;
-    }
-
-    public void setIdCheckList(Long idCheckList) {
-        this.idCheckList = idCheckList;
+    public void setNroCelular(Long nroCelular) {
+        this.nroCelular = nroCelular;
     }
 
     public String getVersaoAtual() {

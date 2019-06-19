@@ -12,14 +12,14 @@
     tools:context=".ConfiguracaoActivity">
 
     <TextView
-        android:id="@+id/textViewLiderConfig"
+        android:id="@+id/textViewLinhaConfig"
         style="@style/TextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/texto_lider" />
+        android:text="@string/texto_linha" />
 
     <EditText
-        android:id="@+id/editTextLiderConfig"
+        android:id="@+id/editTextLinhaConfig"
         style="@style/EditView"
         android:inputType="number" />
 

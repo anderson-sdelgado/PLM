@@ -13,7 +13,9 @@ public class ConfiguracaoTO extends Entidade {
     @DatabaseField(generatedId=true)
     private Long idConfig;
 	@DatabaseField
-	private Long matricLiderConfig;
+	private Long nroCelularConfig;
+	@DatabaseField
+	private Long liderConfig;
     @DatabaseField
 	private String senhaConfig;
 
@@ -25,16 +27,12 @@ public class ConfiguracaoTO extends Entidade {
 		return idConfig;
 	}
 
-	public void setIdConfig(Long idConfig) {
-		this.idConfig = idConfig;
+	public Long getNroCelularConfig() {
+		return nroCelularConfig;
 	}
 
-	public Long getMatricLiderConfig() {
-		return matricLiderConfig;
-	}
-
-	public void setMatricLiderConfig(Long matricLiderConfig) {
-		this.matricLiderConfig = matricLiderConfig;
+	public void setNroCelularConfig(Long nroCelularConfig) {
+		this.nroCelularConfig = nroCelularConfig;
 	}
 
 	public String getSenhaConfig() {
@@ -43,5 +41,13 @@ public class ConfiguracaoTO extends Entidade {
 
 	public void setSenhaConfig(String senhaConfig) {
 		this.senhaConfig = senhaConfig;
+	}
+
+	public Long getLiderConfig() {
+		return liderConfig;
+	}
+
+	public void setLiderConfig(Long liderConfig) {
+		this.liderConfig = liderConfig;
 	}
 }

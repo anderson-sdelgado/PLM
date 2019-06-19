@@ -5,7 +5,7 @@ import com.j256.ormlite.table.DatabaseTable;
 
 import br.com.usinasantafe.plm.pst.Entidade;
 
-@DatabaseTable(tableName="tbapontammvar")
+@DatabaseTable(tableName="tbapontavar")
 public class ApontTO extends Entidade  {
 
 	private static final long serialVersionUID = 1L;
@@ -16,8 +16,6 @@ public class ApontTO extends Entidade  {
 	private Long idEquipApont;
 	@DatabaseField
 	private Long idTurnoApont;
-	@DatabaseField
-	private Long matricOperApont;
 	@DatabaseField
 	private Long matricLiderApont;
 	@DatabaseField
@@ -57,14 +55,6 @@ public class ApontTO extends Entidade  {
 
 	public void setIdTurnoApont(Long idTurnoApont) {
 		this.idTurnoApont = idTurnoApont;
-	}
-
-	public Long getMatricOperApont() {
-		return matricOperApont;
-	}
-
-	public void setMatricOperApont(Long matricOperApont) {
-		this.matricOperApont = matricOperApont;
 	}
 
 	public Long getMatricLiderApont() {

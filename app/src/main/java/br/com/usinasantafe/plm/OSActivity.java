@@ -9,6 +9,8 @@ import android.os.Handler;
 import android.view.View;
 import android.widget.Button;
 
+import java.util.List;
+
 import br.com.usinasantafe.plm.bo.ConexaoWeb;
 import br.com.usinasantafe.plm.bo.ManipDadosVerif;
 import br.com.usinasantafe.plm.tb.estaticas.OSTO;
@@ -41,33 +43,82 @@ public class OSActivity extends ActivityGeneric {
                         plmContext.getApontTO().setOsApont(Long.parseLong(editTextPadrao.getText().toString()));
 
                         OSTO osTO = new OSTO();
-                        osTO.deleteAll();
-
-                        ROSAtivTO rosAtivTO = new ROSAtivTO();
-                        rosAtivTO.deleteAll();
 
                         ConexaoWeb conexaoWeb = new ConexaoWeb();
-                        if (conexaoWeb.verificaConexao(OSActivity.this)) {
 
-                            progressBar = new ProgressDialog(v.getContext());
-                            progressBar.setCancelable(true);
-                            progressBar.setMessage("Pequisando a OS...");
-                            progressBar.show();
+                        if (osTO.hasElements()) {
 
-                            customHandler.postDelayed(updateTimerThread, 10000);
+                            List osList = osTO.get("nroOS", Long.parseLong(editTextPadrao.getText().toString()));
 
-                            plmContext.getApontTO().setStatusConApont(1L);
+                            if (osList.size() > 0) {
 
-                            ManipDadosVerif.getInstance().verDados(editTextPadrao.getText().toString(), "OS"
-                                    , OSActivity.this, ListaAtividadeActivity.class, progressBar);
+                                if (conexaoWeb.verificaConexao(OSActivity.this)) {
+                                    plmContext.getApontTO().setStatusConApont(1L);
+                                }
+                                else{
+                                    plmContext.getApontTO().setStatusConApont(0L);
+                                }
 
-                        } else {
+                                Intent it = new Intent(OSActivity.this, ListaAtividadeActivity.class);
+                                startActivity(it);
+                                finish();
 
-                            plmContext.getApontTO().setStatusConApont(0L);
+                            }
+                            else{
 
-                            Intent it = new Intent(OSActivity.this, ListaAtividadeActivity.class);
-                            startActivity(it);
-                            finish();
+
+                                if (conexaoWeb.verificaConexao(OSActivity.this)) {
+
+                                    progressBar = new ProgressDialog(v.getContext());
+                                    progressBar.setCancelable(true);
+                                    progressBar.setMessage("PESQUISANDO A OS...");
+                                    progressBar.show();
+
+                                    customHandler.postDelayed(updateTimerThread, 10000);
+
+                                    plmContext.getApontTO().setStatusConApont(1L);
+
+                                    ManipDadosVerif.getInstance().verDados(editTextPadrao.getText().toString(), "OS"
+                                            , OSActivity.this, ListaAtividadeActivity.class, progressBar);
+
+                                } else {
+
+                                    plmContext.getApontTO().setStatusConApont(0L);
+
+                                    Intent it = new Intent(OSActivity.this, ListaAtividadeActivity.class);
+                                    startActivity(it);
+                                    finish();
+
+                                }
+
+                            }
+
+                        }
+                        else{
+
+                            if (conexaoWeb.verificaConexao(OSActivity.this)) {
+
+                                progressBar = new ProgressDialog(v.getContext());
+                                progressBar.setCancelable(true);
+                                progressBar.setMessage("PESQUISANDO A OS...");
+                                progressBar.show();
+
+                                customHandler.postDelayed(updateTimerThread, 10000);
+
+                                plmContext.getApontTO().setStatusConApont(1L);
+
+                                ManipDadosVerif.getInstance().verDados(editTextPadrao.getText().toString(), "OS"
+                                        , OSActivity.this, ListaAtividadeActivity.class, progressBar);
+
+                            } else {
+
+                                plmContext.getApontTO().setStatusConApont(0L);
+
+                                Intent it = new Intent(OSActivity.this, ListaAtividadeActivity.class);
+                                startActivity(it);
+                                finish();
+
+                            }
 
                         }
 

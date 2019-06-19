@@ -23,10 +23,12 @@
     <string name="texto_padrao_salvar">SALVAR</string>
     <string name="texto_atualizar_bd">ATUALIZAR DADOS</string>
     <string name="texto_lider">LÍDER:</string>
+    <string name="texto_linha">LINHA:</string>
     <string name="texto_turno">TURNO</string>
     <string name="texto_padrao_retorna">RETORNAR</string>
     <string name="texto_atividade">ATIVIDADE</string>
     <string name="texto_atualizar">ATUALIZAR</string>
     <string name="texto_os">NUM. OS:</string>
     <string name="texto_motivo_parada">MOTIVOS DE PARADA</string>
+    <string name="texto_opcao">OPÇÃO</string>
 </resources>

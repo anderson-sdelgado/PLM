@@ -54,15 +54,15 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
 		
 		try{
 
-			TableUtils.createTable(cs, EquipTO.class);
 			TableUtils.createTable(cs, AtividadeTO.class);
-			TableUtils.createTable(cs, REquipAtivTO.class);
-			TableUtils.createTable(cs, TurnoTO.class);
 			TableUtils.createTable(cs, ColabTO.class);
+			TableUtils.createTable(cs, EquipTO.class);
 			TableUtils.createTable(cs, OSTO.class);
-			TableUtils.createTable(cs, ROSAtivTO.class);
-			TableUtils.createTable(cs, RAtivParadaTO.class);
 			TableUtils.createTable(cs, ParadaTO.class);
+			TableUtils.createTable(cs, RAtivParadaTO.class);
+			TableUtils.createTable(cs, REquipAtivTO.class);
+			TableUtils.createTable(cs, ROSAtivTO.class);
+			TableUtils.createTable(cs, TurnoTO.class);
 
 			TableUtils.createTable(cs, ConfiguracaoTO.class);
 			TableUtils.createTable(cs, ApontTO.class);

@@ -32,13 +32,13 @@ public class UrlsConexaoHttp {
         if (classe.equals("Equip")) {
             retorno = urlPrincEnvio + "equip.php";
         } else if (classe.equals("OS")) {
-            retorno = urlPrincEnvio + "verifos.php";
+            retorno = urlPrincEnvio + "os.php";
         } else if (classe.equals("Atividade")) {
-            retorno = urlPrincEnvio + "verifativ.php";
+            retorno = urlPrincEnvio + "atualativ.php";
         } else if (classe.equals("Parada")) {
-            retorno = urlPrincEnvio + "verifativpar.php";
+            retorno = urlPrincEnvio + "atualparada.php";
         } else if (classe.equals("Atualiza")) {
-            retorno = urlPrincEnvio + "atualizaaplic.php";
+            retorno = urlPrincEnvio + "atualaplic.php";
         } else if (classe.equals("Colab")) {
             retorno = urlPrincEnvio + "colab.php";
         } else if (classe.equals("Turno")) {

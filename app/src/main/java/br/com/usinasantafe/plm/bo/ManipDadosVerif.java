@@ -229,8 +229,8 @@ public class ManipDadosVerif {
 
             if (!result.contains("exceeded")) {
 
-                int posicao = result.indexOf("#") + 1;
-                String objPrinc = result.substring(0, result.indexOf("#"));
+                int posicao = result.indexOf("_") + 1;
+                String objPrinc = result.substring(0, result.indexOf("_"));
                 String objSeg = result.substring(posicao);
 
                 JSONObject jObj = new JSONObject(objPrinc);

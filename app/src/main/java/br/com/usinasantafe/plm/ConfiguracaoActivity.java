@@ -19,7 +19,7 @@ import br.com.usinasantafe.plm.tb.variaveis.ConfiguracaoTO;
 public class ConfiguracaoActivity extends ActivityGeneric {
 
     private ProgressDialog progressBar;
-    private EditText editTextLiderConfig;
+    private EditText editTextLinhaConfig;
     private EditText editTextSenhaConfig;
 
     @Override
@@ -30,7 +30,7 @@ public class ConfiguracaoActivity extends ActivityGeneric {
         Button btOkConfig =  (Button) findViewById(R.id.buttonSalvarConfig );
         Button btCancConfig = (Button) findViewById(R.id.buttonCancConfig);
         Button btAtualBDConfig = (Button) findViewById(R.id.buttonAtualizarBD);
-        editTextLiderConfig = (EditText)  findViewById(R.id.editTextLiderConfig);
+        editTextLinhaConfig = (EditText)  findViewById(R.id.editTextLinhaConfig);
         editTextSenhaConfig = (EditText)  findViewById(R.id.editTextSenhaConfig);
 
         ConfiguracaoTO configuracaoTO = new ConfiguracaoTO();
@@ -41,7 +41,7 @@ public class ConfiguracaoActivity extends ActivityGeneric {
             configuracaoTO = (ConfiguracaoTO) configList.get(0);
             configList.clear();
 
-            editTextLiderConfig.setText(String.valueOf(configuracaoTO.getMatricLiderConfig()));
+            editTextLinhaConfig.setText(String.valueOf(configuracaoTO.getNroCelularConfig()));
             editTextSenhaConfig.setText(configuracaoTO.getSenhaConfig());
 
         }
@@ -52,42 +52,19 @@ public class ConfiguracaoActivity extends ActivityGeneric {
             public void onClick(View v) {
                 // TODO Auto-generated method stub
 
-                if(!editTextLiderConfig.getText().toString().equals("") &&
+                if(!editTextLinhaConfig.getText().toString().equals("") &&
                         !editTextSenhaConfig.getText().toString().equals("")){
 
-                    ColabTO colabTO = new ColabTO();
-                    List colabList = colabTO.get("codColab", Long.parseLong(editTextLiderConfig.getText().toString()));
+                    ConfiguracaoTO configuracaoTO = new ConfiguracaoTO();
+                    configuracaoTO.deleteAll();
+                    configuracaoTO.setNroCelularConfig(Long.parseLong(editTextLinhaConfig.getText().toString()));
+                    configuracaoTO.setSenhaConfig(editTextSenhaConfig.getText().toString());
+                    configuracaoTO.setLiderConfig(0L);
+                    configuracaoTO.insert();
 
-                    if(colabList.size() > 0){
-
-                        ConfiguracaoTO configuracaoTO = new ConfiguracaoTO();
-                        configuracaoTO.deleteAll();
-                        configuracaoTO.setMatricLiderConfig(Long.parseLong(editTextLiderConfig.getText().toString()));
-                        configuracaoTO.setSenhaConfig(editTextSenhaConfig.getText().toString());
-                        configuracaoTO.insert();
-
-                        Intent it = new Intent(ConfiguracaoActivity.this, MenuInicialActivity.class);
-                        startActivity(it);
-                        finish();
-
-                    }
-                    else{
-
-                        AlertDialog.Builder alerta = new AlertDialog.Builder( ConfiguracaoActivity.this);
-                        alerta.setTitle("ATENÇÃO");
-                        alerta.setMessage("FUNCIONÁRIO INEXISTENTE! POR FAVOR, VERIFICAR A MATRÍCULA DO FUNCIONÁRIO.");
-                        alerta.setPositiveButton("OK", new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-
-                            }
-                        });
-
-                        alerta.show();
-
-                    }
-
-                    colabList.clear();
+                    Intent it = new Intent(ConfiguracaoActivity.this, MenuInicialActivity.class);
+                    startActivity(it);
+                    finish();
 
                 }
 

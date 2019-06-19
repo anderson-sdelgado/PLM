@@ -46,7 +46,7 @@ public class ManipDadosEnvio {
         configList.clear();
 
         String datahora = Tempo.getInstance().datahora();
-        apontTO.setMatricLiderApont(configuracaoTO.getMatricLiderConfig());
+        apontTO.setMatricLiderApont(configuracaoTO.getNroCelularConfig());
         apontTO.setDthrApont(datahora);
         apontTO.insert();
 

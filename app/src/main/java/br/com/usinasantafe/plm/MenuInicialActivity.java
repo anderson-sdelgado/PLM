@@ -44,9 +44,10 @@ public class MenuInicialActivity extends ActivityGeneric {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu_inicial);
 
-        configTO = new ConfiguracaoTO();
-        textViewProcesso = (TextView) findViewById(R.id.textViewProcesso);
         plmContext = (PLMContext) getApplication();
+        configTO = new ConfiguracaoTO();
+
+        textViewProcesso = (TextView) findViewById(R.id.textViewProcesso);
 
         if (!checkPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
             String[] PERMISSIONS = {android.Manifest.permission.WRITE_EXTERNAL_STORAGE};
@@ -74,14 +75,14 @@ public class MenuInicialActivity extends ActivityGeneric {
 
                 configTO = (ConfiguracaoTO) configList.get(0);
                 AtualizaTO atualizaTO = new AtualizaTO();
-                atualizaTO.setIdLiderAtual(configTO.getMatricLiderConfig());
+                atualizaTO.setNroCelular(configTO.getNroCelularConfig());
                 atualizaTO.setVersaoAtual(plmContext.versaoAplic);
                 ManipDadosVerif.getInstance().verAtualizacao(atualizaTO, this, progressBar);
             }
 
         }
         else{
-            startTimer("OFF");
+            startTimer("N");
         }
 
         listarMenuInicial();
@@ -92,7 +93,7 @@ public class MenuInicialActivity extends ActivityGeneric {
 
         ArrayList<String> itens = new ArrayList<String>();
 
-        itens.add("BOLETIM");
+        itens.add("APONTAMENTO");
         itens.add("CONFIGURAÇÃO");
         itens.add("SAIR");
 
@@ -110,10 +111,11 @@ public class MenuInicialActivity extends ActivityGeneric {
                 TextView textView = (TextView) v.findViewById(R.id.textViewItemList);
                 String text = textView.getText().toString();
 
-                if (text.equals("BOLETIM")) {
+                if (text.equals("APONTAMENTO")) {
                     ColabTO colabTO = new ColabTO();
                     if (colabTO.hasElements() && configTO.hasElements()) {
-                        Intent it = new Intent(MenuInicialActivity.this, EquipActivity.class);
+                        customHandler.removeCallbacks(updateTimerThread);
+                        Intent it = new Intent(MenuInicialActivity.this, MenuApontActivity.class);
                         startActivity(it);
                         finish();
                     }

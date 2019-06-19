@@ -52,7 +52,7 @@ public class ListaTurnoActivity extends Activity {
 
                             progressBar = new ProgressDialog(ListaTurnoActivity.this);
                             progressBar.setCancelable(true);
-                            progressBar.setMessage("Atualizando Turno...");
+                            progressBar.setMessage("ATUALIZANDO TURNO...");
                             progressBar.show();
 
                             ManipDadosVerif.getInstance().verDados("", "Turno"
@@ -122,7 +122,7 @@ public class ListaTurnoActivity extends Activity {
                 plmContext.getApontTO().setIdTurnoApont(turnoTO.getIdTurno());
                 turnoList.clear();
 
-                Intent it = new Intent(ListaTurnoActivity.this, OperadorActivity.class);
+                Intent it = new Intent(ListaTurnoActivity.this, OSActivity.class);
                 startActivity(it);
 
             }

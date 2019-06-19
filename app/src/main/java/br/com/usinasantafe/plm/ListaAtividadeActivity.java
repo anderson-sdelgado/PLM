@@ -49,7 +49,7 @@ public class ListaAtividadeActivity extends Activity {
 
                     progressBar = new ProgressDialog(v.getContext());
                     progressBar.setCancelable(true);
-                    progressBar.setMessage("Atualizando Atividades...");
+                    progressBar.setMessage("ATUALIZANDO ATIVIDADES...");
                     progressBar.show();
 
                     ManipDadosVerif.getInstance().verDados("", "Atividade"

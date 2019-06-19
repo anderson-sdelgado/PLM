@@ -47,7 +47,7 @@ public class EquipActivity extends ActivityGeneric {
 
                             progressBar = new ProgressDialog(EquipActivity.this);
                             progressBar.setCancelable(true);
-                            progressBar.setMessage("Atualizando Equipamento...");
+                            progressBar.setMessage("ATUALIZANDO EQUIPAMENTO...");
                             progressBar.show();
 
                             ManipDadosVerif.getInstance().verDados("", "Equip"

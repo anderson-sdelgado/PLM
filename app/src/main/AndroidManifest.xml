@@ -21,21 +21,32 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".SenhaActivity"
+        <activity
+            android:name=".MenuApontActivity"
             android:screenOrientation="portrait" />
-        <activity android:name=".ListaParadaActivity"
+        <activity
+            android:name=".SenhaActivity"
             android:screenOrientation="portrait" />
-        <activity android:name=".ListaAtividadeActivity"
+        <activity
+            android:name=".ListaParadaActivity"
             android:screenOrientation="portrait" />
-        <activity android:name=".OSActivity"
+        <activity
+            android:name=".ListaAtividadeActivity"
             android:screenOrientation="portrait" />
-        <activity android:name=".OperadorActivity"
+        <activity
+            android:name=".OSActivity"
             android:screenOrientation="portrait" />
-        <activity android:name=".ListaTurnoActivity"
+        <activity
+            android:name=".LiderActivity"
             android:screenOrientation="portrait" />
-        <activity android:name=".EquipActivity"
+        <activity
+            android:name=".ListaTurnoActivity"
             android:screenOrientation="portrait" />
-        <activity android:name=".ConfiguracaoActivity"
+        <activity
+            android:name=".EquipActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ConfiguracaoActivity"
             android:screenOrientation="portrait" />
         <activity android:name=".MenuInicialActivity">
             <intent-filter>

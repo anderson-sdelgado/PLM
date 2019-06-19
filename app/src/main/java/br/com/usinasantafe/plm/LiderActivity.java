@@ -13,8 +13,11 @@ import java.util.List;
 import br.com.usinasantafe.plm.bo.ConexaoWeb;
 import br.com.usinasantafe.plm.bo.ManipDadosVerif;
 import br.com.usinasantafe.plm.tb.estaticas.ColabTO;
+import br.com.usinasantafe.plm.tb.estaticas.OSTO;
+import br.com.usinasantafe.plm.tb.estaticas.ROSAtivTO;
+import br.com.usinasantafe.plm.tb.variaveis.ConfiguracaoTO;
 
-public class OperadorActivity extends ActivityGeneric {
+public class LiderActivity extends ActivityGeneric {
 
     private PLMContext plmContext;
     private ProgressDialog progressBar;
@@ -22,19 +25,19 @@ public class OperadorActivity extends ActivityGeneric {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_operador);
+        setContentView(R.layout.activity_lider);
 
         plmContext = (PLMContext) getApplication();
 
-        Button buttonOkOperador = (Button) findViewById(R.id.buttonOkPadrao);
-        Button buttonCancOperador = (Button) findViewById(R.id.buttonCancPadrao);
+        Button buttonOkLider = (Button) findViewById(R.id.buttonOkPadrao);
+        Button buttonCancLider = (Button) findViewById(R.id.buttonCancPadrao);
         Button buttonAtualPadrao = (Button) findViewById(R.id.buttonAtualPadrao);
 
         buttonAtualPadrao.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                AlertDialog.Builder alerta = new AlertDialog.Builder(OperadorActivity.this);
+                AlertDialog.Builder alerta = new AlertDialog.Builder(LiderActivity.this);
                 alerta.setTitle("ATENÇÃO");
                 alerta.setMessage("DESEJA REALMENTE ATUALIZAR BASE DE DADOS?");
                 alerta.setNegativeButton("SIM", new DialogInterface.OnClickListener() {
@@ -43,19 +46,19 @@ public class OperadorActivity extends ActivityGeneric {
 
                         ConexaoWeb conexaoWeb = new ConexaoWeb();
 
-                        if (conexaoWeb.verificaConexao(OperadorActivity.this)) {
+                        if (conexaoWeb.verificaConexao(LiderActivity.this)) {
 
-                            progressBar = new ProgressDialog(OperadorActivity.this);
+                            progressBar = new ProgressDialog(LiderActivity.this);
                             progressBar.setCancelable(true);
-                            progressBar.setMessage("Atualizando Colaborador...");
+                            progressBar.setMessage("ATUALIZANDO LÍDER...");
                             progressBar.show();
 
                             ManipDadosVerif.getInstance().verDados("", "Colab"
-                                    , OperadorActivity.this, OperadorActivity.class, progressBar);
+                                    , LiderActivity.this, LiderActivity.class, progressBar);
 
                         } else {
 
-                            AlertDialog.Builder alerta = new AlertDialog.Builder(OperadorActivity.this);
+                            AlertDialog.Builder alerta = new AlertDialog.Builder(LiderActivity.this);
                             alerta.setTitle("ATENÇÃO");
                             alerta.setMessage("FALHA NA CONEXÃO DE DADOS. O CELULAR ESTA SEM SINAL. POR FAVOR, TENTE NOVAMENTE QUANDO O CELULAR ESTIVE COM SINAL.");
                             alerta.setPositiveButton("OK", new DialogInterface.OnClickListener() {
@@ -84,7 +87,7 @@ public class OperadorActivity extends ActivityGeneric {
 
         });
 
-        buttonOkOperador.setOnClickListener(new View.OnClickListener() {
+        buttonOkLider.setOnClickListener(new View.OnClickListener() {
             @SuppressWarnings("rawtypes")
             @Override
             public void onClick(View v) {
@@ -98,16 +101,28 @@ public class OperadorActivity extends ActivityGeneric {
                     if (colabList.size() > 0) {
 
                         colabTO = (ColabTO) colabList.get(0);
-                        plmContext.getApontTO().setMatricOperApont(colabTO.getCodColab());
-                        colabList.clear();
 
-                        Intent it = new Intent(OperadorActivity.this, OSActivity.class);
+                        ConfiguracaoTO configuracaoTO = new ConfiguracaoTO();
+                        List configList = configuracaoTO.all();
+                        configuracaoTO = (ConfiguracaoTO) configList.get(0);
+                        configList.clear();
+
+                        configuracaoTO.setLiderConfig(colabTO.getCodColab());
+                        configuracaoTO.update();
+
+                        OSTO osTO = new OSTO();
+                        osTO.deleteAll();
+
+                        ROSAtivTO rosAtivTO = new ROSAtivTO();
+                        rosAtivTO.deleteAll();
+
+                        Intent it = new Intent(LiderActivity.this, MenuApontActivity.class);
                         startActivity(it);
                         finish();
 
                     } else {
 
-                        AlertDialog.Builder alerta = new AlertDialog.Builder(OperadorActivity.this);
+                        AlertDialog.Builder alerta = new AlertDialog.Builder(LiderActivity.this);
                         alerta.setTitle("ATENÇÃO");
                         alerta.setMessage("MATRÍCULA DO OPERADOR INEXISTENTE! FAVOR VERIFICA A MESMA.");
                         alerta.setPositiveButton("OK", new DialogInterface.OnClickListener() {
@@ -120,14 +135,8 @@ public class OperadorActivity extends ActivityGeneric {
                         alerta.show();
 
                     }
-                }
-                else{
 
-                    plmContext.getApontTO().setMatricOperApont(0L);
-
-                    Intent it = new Intent(OperadorActivity.this, OSActivity.class);
-                    startActivity(it);
-                    finish();
+                    colabList.clear();
 
                 }
 
@@ -135,7 +144,7 @@ public class OperadorActivity extends ActivityGeneric {
 
         });
 
-        buttonCancOperador.setOnClickListener(new View.OnClickListener() {
+        buttonCancLider.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View v) {
@@ -149,7 +158,7 @@ public class OperadorActivity extends ActivityGeneric {
     }
 
     public void onBackPressed() {
-        Intent it = new Intent(OperadorActivity.this, ListaTurnoActivity.class);
+        Intent it = new Intent(LiderActivity.this, ListaTurnoActivity.class);
         startActivity(it);
         finish();
     }
