@@ -18,7 +18,8 @@ import java.util.Objects;
 import br.com.usinasantafe.plm.bo.ConexaoWeb;
 import br.com.usinasantafe.plm.bo.ManipDadosVerif;
 import br.com.usinasantafe.plm.tb.estaticas.AtividadeTO;
-import br.com.usinasantafe.plm.tb.estaticas.REquipAtivTO;
+import br.com.usinasantafe.plm.tb.estaticas.EquipTO;
+import br.com.usinasantafe.plm.tb.estaticas.RModeloAtivTO;
 import br.com.usinasantafe.plm.tb.estaticas.ROSAtivTO;
 
 public class ListaAtividadeActivity extends Activity {
@@ -77,14 +78,19 @@ public class ListaAtividadeActivity extends Activity {
         AtividadeTO atividadeTO = new AtividadeTO();
         ArrayList<String> itens = new ArrayList<String>();
 
-        REquipAtivTO rEquipAtivTO = new REquipAtivTO();
-        List lrea = rEquipAtivTO.get("idEquip", plmContext.getApontTO().getIdEquipApont());
+        EquipTO equipTO = new EquipTO();
+        List equipList = equipTO.get("idEquip", plmContext.getApontTO().getIdEquipApont());
+        equipTO = (EquipTO) equipList.get(0);
+        equipList.clear();
+
+        RModeloAtivTO rModeloAtivTO = new RModeloAtivTO();
+        List RModeloAtivList = rModeloAtivTO.get("idModelo", equipTO.getIdModelo());
 
         ArrayList<Long> rLista = new ArrayList<Long>();
 
-        for (int i = 0; i < lrea.size(); i++) {
-            rEquipAtivTO = (REquipAtivTO) lrea.get(i);
-            rLista.add(rEquipAtivTO.getIdAtiv());
+        for (int i = 0; i < RModeloAtivList.size(); i++) {
+            rModeloAtivTO = (RModeloAtivTO) RModeloAtivList.get(i);
+            rLista.add(rModeloAtivTO.getIdAtiv());
         }
 
         List ativList = atividadeTO.in("idAtiv", rLista);

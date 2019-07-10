@@ -15,6 +15,7 @@ public class ReceberAlarme extends BroadcastReceiver {
 	@Override
 	public void onReceive(Context context, Intent intent) {
 
+
 		if(DatabaseHelper.getInstance() == null){
 			new DatabaseHelper(context);
 		}

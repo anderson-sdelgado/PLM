@@ -30,6 +30,8 @@ public class EquipTO extends Entidade {
     private String descrClasseEquip;
     @DatabaseField
     private Long codTurno;
+    @DatabaseField
+    private Long idModelo;
 
     public EquipTO() {
     }
@@ -74,4 +76,11 @@ public class EquipTO extends Entidade {
         this.codTurno = codTurno;
     }
 
+    public Long getIdModelo() {
+        return idModelo;
+    }
+
+    public void setIdModelo(Long idModelo) {
+        this.idModelo = idModelo;
+    }
 }

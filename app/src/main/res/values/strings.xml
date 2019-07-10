@@ -22,7 +22,7 @@
     <string name="texto_padrao_cancelar">CANC.</string>
     <string name="texto_padrao_salvar">SALVAR</string>
     <string name="texto_atualizar_bd">ATUALIZAR DADOS</string>
-    <string name="texto_lider">LÍDER:</string>
+    <string name="texto_lider">MATRIC. LÍDER:</string>
     <string name="texto_linha">LINHA:</string>
     <string name="texto_turno">TURNO</string>
     <string name="texto_padrao_retorna">RETORNAR</string>

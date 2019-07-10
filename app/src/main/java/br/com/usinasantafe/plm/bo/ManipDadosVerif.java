@@ -23,11 +23,10 @@ import br.com.usinasantafe.plm.conWEB.ConHttpPostVerGenerico;
 import br.com.usinasantafe.plm.conWEB.UrlsConexaoHttp;
 import br.com.usinasantafe.plm.pst.GenericRecordable;
 import br.com.usinasantafe.plm.tb.estaticas.AtividadeTO;
-import br.com.usinasantafe.plm.tb.estaticas.EquipTO;
 import br.com.usinasantafe.plm.tb.estaticas.OSTO;
 import br.com.usinasantafe.plm.tb.estaticas.ParadaTO;
 import br.com.usinasantafe.plm.tb.estaticas.RAtivParadaTO;
-import br.com.usinasantafe.plm.tb.estaticas.REquipAtivTO;
+import br.com.usinasantafe.plm.tb.estaticas.RModeloAtivTO;
 import br.com.usinasantafe.plm.tb.estaticas.ROSAtivTO;
 import br.com.usinasantafe.plm.tb.variaveis.AtualizaTO;
 
@@ -330,14 +329,14 @@ public class ManipDadosVerif {
                 JSONObject jObj = new JSONObject(objPrim);
                 JSONArray jsonArray = jObj.getJSONArray("dados");
 
-                REquipAtivTO rEquipAtivTO = new REquipAtivTO();
-                rEquipAtivTO.deleteAll();
+                RModeloAtivTO rModeloAtivTO = new RModeloAtivTO();
+                rModeloAtivTO.deleteAll();
 
                 for (int j = 0; j < jsonArray.length(); j++) {
 
                     JSONObject objeto = jsonArray.getJSONObject(j);
                     Gson gson = new Gson();
-                    REquipAtivTO rEquipAtiv = gson.fromJson(objeto.toString(), REquipAtivTO.class);
+                    RModeloAtivTO rEquipAtiv = gson.fromJson(objeto.toString(), RModeloAtivTO.class);
                     rEquipAtiv.insert();
 
                 }

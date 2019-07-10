@@ -9,35 +9,35 @@ import br.com.usinasantafe.plm.pst.Entidade;
  * Created by anderson on 28/04/2017.
  */
 
-@DatabaseTable(tableName="tbrequipativest")
-public class REquipAtivTO extends Entidade {
+@DatabaseTable(tableName="tbrmodelativest")
+public class RModeloAtivTO extends Entidade {
 
     private static final long serialVersionUID = 1L;
 
     @DatabaseField(generatedId=true)
-    private Long idEquipAtiv;
+    private Long idModeloAtiv;
     @DatabaseField
-    private Long idEquip;
+    private Long idModelo;
     @DatabaseField
     private Long idAtiv;
 
-    public REquipAtivTO() {
+    public RModeloAtivTO() {
     }
 
-    public Long getIdEquipAtiv() {
-        return idEquipAtiv;
+    public Long getIdModeloAtiv() {
+        return idModeloAtiv;
     }
 
-    public void setIdEquipAtiv(Long idEquipAtiv) {
-        this.idEquipAtiv = idEquipAtiv;
+    public void setIdModeloAtiv(Long idModeloAtiv) {
+        this.idModeloAtiv = idModeloAtiv;
     }
 
-    public Long getIdEquip() {
-        return idEquip;
+    public Long getIdModelo() {
+        return idModelo;
     }
 
-    public void setIdEquip(Long idEquip) {
-        this.idEquip = idEquip;
+    public void setIdModelo(Long idModelo) {
+        this.idModelo = idModelo;
     }
 
     public Long getIdAtiv() {

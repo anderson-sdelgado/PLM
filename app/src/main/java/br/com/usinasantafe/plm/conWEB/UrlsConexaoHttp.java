@@ -4,8 +4,8 @@ public class UrlsConexaoHttp {
 
     private int tipoEnvio = 1;
 
-    public static String urlPrincipal = "http://www.usinasantafe.com.br/plmdev/";
-    public static String urlPrincEnvio = "http://www.usinasantafe.com.br/plmdev/";
+    public static String urlPrincipal = "http://www.usinasantafe.com.br/plmqa/";
+    public static String urlPrincEnvio = "http://www.usinasantafe.com.br/plmqa/";
 
     //public static String localPSTVariavel = "br.com.usinasantafe.plm.tb.variaveis.";
     public static String localPSTEstatica = "br.com.usinasantafe.plm.tb.estaticas.";
@@ -16,7 +16,7 @@ public class UrlsConexaoHttp {
     public static String TurnoTO = urlPrincipal + "turno.php";
     public static String ColabTO = urlPrincipal + "colab.php";
     public static String EquipTO = urlPrincipal + "equip.php";
-    public static String REquipAtivTO = urlPrincipal + "requipativ.php";
+    public static String RModeloAtivTO = urlPrincipal + "rmodeloativ.php";
     public static String RAtivParadaTO = urlPrincipal + "rativparada.php";
 
     public UrlsConexaoHttp() {
