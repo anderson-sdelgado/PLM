@@ -25,7 +25,7 @@ import br.com.usinasantafe.plm.bo.ManipDadosVerif;
 import br.com.usinasantafe.plm.tb.estaticas.ParadaTO;
 import br.com.usinasantafe.plm.tb.estaticas.RAtivParadaTO;
 
-public class ListaParadaActivity extends Activity {
+public class ListaParadaActivity extends ActivityGeneric {
 
     private PLMContext plmContext;
     private ArrayAdapter<String> paradaArrayAdapter;
@@ -167,10 +167,11 @@ public class ListaParadaActivity extends Activity {
                         plmContext.getApontTO().setParadaApont(paradaTO.getIdParada());
                         paradaList.clear();
 
-                        ManipDadosEnvio.getInstance().salvaApont(plmContext.getApontTO());
+                        plmContext.setTextoHorimetro("HORÍMETRO INICIAL:");
 
-                        Intent it = new Intent(ListaParadaActivity.this, MenuInicialActivity.class);
+                        Intent it = new Intent(ListaParadaActivity.this, HorimetroActivity.class);
                         startActivity(it);
+                        finish();
 
                     }
 

@@ -5,7 +5,7 @@ import com.j256.ormlite.table.DatabaseTable;
 
 import br.com.usinasantafe.plm.pst.Entidade;
 
-@DatabaseTable(tableName="tbapontavar")
+@DatabaseTable(tableName="tbapontvar")
 public class ApontTO extends Entidade  {
 
 	private static final long serialVersionUID = 1L;
@@ -13,11 +13,7 @@ public class ApontTO extends Entidade  {
 	@DatabaseField(generatedId=true)
 	private Long idApont;
 	@DatabaseField
-	private Long idEquipApont;
-	@DatabaseField
-	private Long idTurnoApont;
-	@DatabaseField
-	private Long matricLiderApont;
+	private Long idBolApont;
 	@DatabaseField
 	private Long osApont;
 	@DatabaseField
@@ -33,36 +29,12 @@ public class ApontTO extends Entidade  {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Long getIdApont() {
-		return idApont;
+	public Long getIdBolApont() {
+		return idBolApont;
 	}
 
-	public void setIdApont(Long idApont) {
-		this.idApont = idApont;
-	}
-
-	public Long getIdEquipApont() {
-		return idEquipApont;
-	}
-
-	public void setIdEquipApont(Long idEquipApont) {
-		this.idEquipApont = idEquipApont;
-	}
-
-	public Long getIdTurnoApont() {
-		return idTurnoApont;
-	}
-
-	public void setIdTurnoApont(Long idTurnoApont) {
-		this.idTurnoApont = idTurnoApont;
-	}
-
-	public Long getMatricLiderApont() {
-		return matricLiderApont;
-	}
-
-	public void setMatricLiderApont(Long matricLiderApont) {
-		this.matricLiderApont = matricLiderApont;
+	public void setIdBolApont(Long idBolApont) {
+		this.idBolApont = idBolApont;
 	}
 
 	public Long getOsApont() {
@@ -104,5 +76,4 @@ public class ApontTO extends Entidade  {
 	public void setStatusConApont(Long statusConApont) {
 		this.statusConApont = statusConApont;
 	}
-
 }

@@ -22,7 +22,7 @@ import br.com.usinasantafe.plm.tb.estaticas.EquipTO;
 import br.com.usinasantafe.plm.tb.estaticas.RModeloAtivTO;
 import br.com.usinasantafe.plm.tb.estaticas.ROSAtivTO;
 
-public class ListaAtividadeActivity extends Activity {
+public class ListaAtividadeActivity extends ActivityGeneric {
 
     private ProgressDialog progressBar;
     private PLMContext plmContext;
@@ -79,7 +79,7 @@ public class ListaAtividadeActivity extends Activity {
         ArrayList<String> itens = new ArrayList<String>();
 
         EquipTO equipTO = new EquipTO();
-        List equipList = equipTO.get("idEquip", plmContext.getApontTO().getIdEquipApont());
+        List equipList = equipTO.get("idEquip", plmContext.getBoletimTO().getIdEquipBoletim());
         equipTO = (EquipTO) equipList.get(0);
         equipList.clear();
 
@@ -135,6 +135,7 @@ public class ListaAtividadeActivity extends Activity {
 
                 AtividadeTO atividadeTO = new AtividadeTO();
                 atividadeTO = (AtividadeTO) ativArrayList.get(position);
+                plmContext.getBoletimTO().setAtivPrincBoletim(atividadeTO.getIdAtiv());
                 plmContext.getApontTO().setAtivApont(atividadeTO.getIdAtiv());
                 ativArrayList.clear();
 

@@ -1,6 +1,8 @@
 package br.com.usinasantafe.plm;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -10,8 +12,11 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+import java.util.List;
 
-public class MenuApontActivity extends Activity {
+import br.com.usinasantafe.plm.tb.variaveis.ConfiguracaoTO;
+
+public class MenuApontActivity extends ActivityGeneric {
 
     private ListView opcaoList;
 
@@ -42,9 +47,29 @@ public class MenuApontActivity extends Activity {
                 String text = textView.getText().toString();
 
                 if (text.equals("APONTAR")) {
-                    Intent it = new Intent(MenuApontActivity.this, EquipActivity.class);
-                    startActivity(it);
-                    finish();
+
+                    ConfiguracaoTO configuracaoTO = new ConfiguracaoTO();
+                    List configList = configuracaoTO.all();
+                    configuracaoTO = (ConfiguracaoTO) configList.get(0);
+                    configList.clear();
+
+                    if(configuracaoTO.getLiderConfig() > 0) {
+                        Intent it = new Intent(MenuApontActivity.this, ListaBoletimActivity.class);
+                        startActivity(it);
+                        finish();
+                    }else{
+                        AlertDialog.Builder alerta = new AlertDialog.Builder(MenuApontActivity.this);
+                        alerta.setTitle("ATENCAO");
+                        alerta.setMessage("FALTA DE CADASTRO DE LÍDER. POR FAVOR, INSIRA A MATRICULA DO LÍDER ABAIXO.");
+                        alerta.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+
+                            }
+                        });
+
+                        alerta.show();
+                    }
                 } else if (text.equals("MATRICULA LÍDER")) {
                     Intent it = new Intent(MenuApontActivity.this, LiderActivity.class);
                     startActivity(it);

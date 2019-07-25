@@ -19,7 +19,7 @@ import br.com.usinasantafe.plm.bo.ManipDadosVerif;
 import br.com.usinasantafe.plm.tb.estaticas.EquipTO;
 import br.com.usinasantafe.plm.tb.estaticas.TurnoTO;
 
-public class ListaTurnoActivity extends Activity {
+public class ListaTurnoActivity extends ActivityGeneric {
 
     private ProgressDialog progressBar;
     private PLMContext plmContext;
@@ -93,7 +93,7 @@ public class ListaTurnoActivity extends Activity {
 
 
         EquipTO equipTO = new EquipTO();
-        List listEquipTO = equipTO.get("idEquip", plmContext.getApontTO().getIdEquipApont());
+        List listEquipTO = equipTO.get("idEquip", plmContext.getBoletimTO().getIdEquipBoletim());
         equipTO = (EquipTO) listEquipTO.get(0);
         listEquipTO.clear();
 
@@ -119,7 +119,7 @@ public class ListaTurnoActivity extends Activity {
                 // TODO Auto-generated method stub
 
                 TurnoTO turnoTO = (TurnoTO) turnoList.get(position);
-                plmContext.getApontTO().setIdTurnoApont(turnoTO.getIdTurno());
+                plmContext.getBoletimTO().setIdTurnoBoletim(turnoTO.getIdTurno());
                 turnoList.clear();
 
                 Intent it = new Intent(ListaTurnoActivity.this, OSActivity.class);

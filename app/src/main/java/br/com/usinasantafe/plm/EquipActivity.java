@@ -98,7 +98,7 @@ public class EquipActivity extends ActivityGeneric {
                     if (equipList.size() > 0) {
 
                         equipTO = (EquipTO) equipList.get(0);
-                        plmContext.getApontTO().setIdEquipApont(equipTO.getIdEquip());
+                        plmContext.getBoletimTO().setIdEquipBoletim(equipTO.getIdEquip());
                         equipList.clear();
 
                         Intent it = new Intent(EquipActivity.this, ListaTurnoActivity.class);

@@ -102,9 +102,11 @@ public class ConHttpPostCadGenerico extends AsyncTask<String, Void, String> {
 		try {
 			ManipDadosEnvio.getInstance().setEnviando(false);
 			Log.i("ECM", "VALOR RECEBIDO --> " + result);
-			if(result.trim().equals("GRAVOU-APONT")){
-				ManipDadosEnvio.getInstance().delApont();
-			}
+			if(result.trim().equals("GRAVOU-BOLABERTO")){
+				ManipDadosEnvio.getInstance().atualBolAberto();
+			}else if(result.trim().equals("GRAVOU-BOLFECHADO")){
+                ManipDadosEnvio.getInstance().delBolFechado();
+            }
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			Log.i("PMM", "Erro2 = " + e);

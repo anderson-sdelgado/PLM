@@ -40,6 +40,7 @@ public class OSActivity extends ActivityGeneric {
 
                     try{
 
+                        plmContext.getBoletimTO().setOsBoletim(Long.parseLong(editTextPadrao.getText().toString()));
                         plmContext.getApontTO().setOsApont(Long.parseLong(editTextPadrao.getText().toString()));
 
                         OSTO osTO = new OSTO();
@@ -53,9 +54,11 @@ public class OSActivity extends ActivityGeneric {
                             if (osList.size() > 0) {
 
                                 if (conexaoWeb.verificaConexao(OSActivity.this)) {
+                                    plmContext.getBoletimTO().setStatusConBoletim(1L);
                                     plmContext.getApontTO().setStatusConApont(1L);
                                 }
                                 else{
+                                    plmContext.getBoletimTO().setStatusConBoletim(0L);
                                     plmContext.getApontTO().setStatusConApont(0L);
                                 }
 
@@ -66,7 +69,6 @@ public class OSActivity extends ActivityGeneric {
                             }
                             else{
 
-
                                 if (conexaoWeb.verificaConexao(OSActivity.this)) {
 
                                     progressBar = new ProgressDialog(v.getContext());
@@ -76,6 +78,7 @@ public class OSActivity extends ActivityGeneric {
 
                                     customHandler.postDelayed(updateTimerThread, 10000);
 
+                                    plmContext.getBoletimTO().setStatusConBoletim(1L);
                                     plmContext.getApontTO().setStatusConApont(1L);
 
                                     ManipDadosVerif.getInstance().verDados(editTextPadrao.getText().toString(), "OS"
@@ -83,6 +86,7 @@ public class OSActivity extends ActivityGeneric {
 
                                 } else {
 
+                                    plmContext.getBoletimTO().setStatusConBoletim(0L);
                                     plmContext.getApontTO().setStatusConApont(0L);
 
                                     Intent it = new Intent(OSActivity.this, ListaAtividadeActivity.class);
@@ -105,6 +109,7 @@ public class OSActivity extends ActivityGeneric {
 
                                 customHandler.postDelayed(updateTimerThread, 10000);
 
+                                plmContext.getBoletimTO().setStatusConBoletim(1L);
                                 plmContext.getApontTO().setStatusConApont(1L);
 
                                 ManipDadosVerif.getInstance().verDados(editTextPadrao.getText().toString(), "OS"
@@ -112,6 +117,7 @@ public class OSActivity extends ActivityGeneric {
 
                             } else {
 
+                                plmContext.getBoletimTO().setStatusConBoletim(0L);
                                 plmContext.getApontTO().setStatusConApont(0L);
 
                                 Intent it = new Intent(OSActivity.this, ListaAtividadeActivity.class);

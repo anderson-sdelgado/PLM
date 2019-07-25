@@ -31,4 +31,8 @@
     <string name="texto_os">NUM. OS:</string>
     <string name="texto_motivo_parada">MOTIVOS DE PARADA</string>
     <string name="texto_opcao">OPÇÃO</string>
+    <string name="texto_padrao_inserir">INSERIR</string>
+    <string name="texto_boletim">BOLETIM</string>
+    <string name="texto_data_hora">DIA:</string>
+    <string name="texto_horimetro">HORÍMETRO:</string>
 </resources>
